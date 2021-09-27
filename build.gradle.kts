@@ -41,6 +41,8 @@ kotlin {
                 implementation(compose.web.core)
                 implementation(compose.web.widgets)
                 implementation(compose.runtime)
+                implementation(npm("@stripe/stripe-js", "1.18.0"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
             }
         }
     }

@@ -16,34 +16,30 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package br.com.semudando
 
-import br.com.semudando.stripe.PaymentModal
-import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.css.Style
-import org.jetbrains.compose.web.css.StyleSheet
+package br.com.semudando.stripe
+
+import androidx.compose.runtime.Composable
 import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.renderComposable
+import org.jetbrains.compose.web.dom.Form
 
-fun main() {
-    renderComposable("root") {
-        Style(AppStyleSheet)
+@Composable
+fun CardWrapper() {
+    Form(attrs = { id("payment-form") }) {
+        Div({ id("card-element") }) {
 
-        Div {
-            PaymentModal()
-            Header()
+        }
+        Div({ id("card-errors") }) {
 
-            Home()
-
-            Footer()
         }
     }
-}
 
-object AppStyleSheet : StyleSheet() {
-    val primary = Color("#023e8a")
-    val primaryLight = Color("#02558b")
+    val stripe = loadStripe("pk_test_51JIv2cD0fOKTQjSDXK0rwdcFNeANXf9s2GaKfsoQZjJ1b1BcSy8TIMIVSmTPIcOdgAV1dPCbUFm3frFhli0Ta4gZ00Tb4eB3a3")
+    console.log(stripe)
 
-    val accent = Color("#eb4a3b")
-    val accentLight = Color("#d9554d")
+    val elements = stripe.then<dynamic> {
+        val elements = it.elements()
+        val card = elements.create("card")
+        card.mount("#card-element")
+    }
 }

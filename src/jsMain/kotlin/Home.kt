@@ -43,6 +43,7 @@ import br.com.semudando.HomeStyles.text
 import br.com.semudando.HomeStyles.video
 import br.com.semudando.HomeStyles.videoBackground
 import br.com.semudando.HomeStyles.videoTitle
+import br.com.semudando.stripe.PaymentModal
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color.white
 import org.jetbrains.compose.web.css.DisplayStyle.Companion.Block
@@ -114,7 +115,7 @@ fun TextBoxIntro() {
                 Text("Juntos nós podemos! Vamos?")
             }
 
-            Button({ classes(button) }) {
+            Button({ classes(button); onClick { PaymentModal.show() } }) {
                 Text("APOIE NOSSA CAUSA")
             }
         }

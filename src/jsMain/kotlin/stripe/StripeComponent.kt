@@ -15,35 +15,12 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+@file:JsModule("@stripe/stripe-js")
+@file:JsNonModule
 
-package br.com.semudando
+package br.com.semudando.stripe
 
-import br.com.semudando.stripe.PaymentModal
-import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.css.Style
-import org.jetbrains.compose.web.css.StyleSheet
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.renderComposable
+import kotlin.js.Promise
 
-fun main() {
-    renderComposable("root") {
-        Style(AppStyleSheet)
 
-        Div {
-            PaymentModal()
-            Header()
-
-            Home()
-
-            Footer()
-        }
-    }
-}
-
-object AppStyleSheet : StyleSheet() {
-    val primary = Color("#023e8a")
-    val primaryLight = Color("#02558b")
-
-    val accent = Color("#eb4a3b")
-    val accentLight = Color("#d9554d")
-}
+external fun loadStripe(vararg args: Any?): Promise<dynamic>
