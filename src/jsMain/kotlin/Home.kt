@@ -32,6 +32,7 @@ import br.com.semudando.HomeStyles.inviteDescription
 import br.com.semudando.HomeStyles.inviteImage
 import br.com.semudando.HomeStyles.inviteTitle
 import br.com.semudando.HomeStyles.logo
+import br.com.semudando.HomeStyles.logoImg
 import br.com.semudando.HomeStyles.picture
 import br.com.semudando.HomeStyles.recycledBackground
 import br.com.semudando.HomeStyles.statement
@@ -100,7 +101,7 @@ fun TextBoxIntro() {
     Div({ classes(recycledBackground) }) {
         Div({ classes(container) }) {
             Div({ classes(logo) }) {
-                Img("logos/placeholder-logo.svg")
+                Img("logos/logo.png") { classes(logoImg) }
             }
 
             Span({ classes(text) }) {
@@ -137,7 +138,7 @@ fun VideoIntro() {
             attr("controls", "true")
         }) {
             Source({
-                attr("src", "videos/pointing_pink.mp4")
+                attr("src", "videos/pitch.mp4")
                 attr("type", "video/mp4")
             })
         }
@@ -148,7 +149,7 @@ fun VideoIntro() {
 fun Statement() {
     Div({ classes(recycledBackground) }) {
         Div({ classes(statementContainer) }) {
-            Img("images/istock_businessman.jpg", "Luciano Vicente de Souza") { classes(picture) }
+            Img("images/luciano.png", "Luciano Vicente de Souza") { classes(picture) }
 
             Div({ classes(statementTexts) }) {
                 Span({ classes(statement) }) {
@@ -189,7 +190,7 @@ fun Invite() {
         }
 
         Div({ style { property("margin-left", "auto") } }) {
-            Img("images/istockphoto-497448724-1024x1024.jpg") { classes(inviteImage) }
+            Img("images/equipe.jpeg") { classes(inviteImage) }
         }
     }
 }
@@ -210,6 +211,10 @@ object HomeStyles : StyleSheet(AppStyleSheet) {
 
     val logo by style {
         marginTop(16.px)
+    }
+
+    val logoImg by style {
+        maxWidth(300.px)
     }
 
     val text by style {
