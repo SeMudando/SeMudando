@@ -23,7 +23,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import br.com.semudando.page.HomePage
 import br.com.semudando.page.WhoWeArePage
-import br.com.semudando.stripe.PaymentModal
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.Style
 import org.jetbrains.compose.web.css.StyleSheet
@@ -35,8 +34,6 @@ fun main() {
         Style(AppStyleSheet)
 
         Div {
-            PaymentModal()
-
             val (page, setPage) = remember { mutableStateOf(Page.Home) }
 
             Header(setPage)
