@@ -34,7 +34,10 @@ import org.jetbrains.compose.web.css.color
 import org.jetbrains.compose.web.css.display
 import org.jetbrains.compose.web.css.height
 import org.jetbrains.compose.web.css.margin
+import org.jetbrains.compose.web.css.marginLeft
+import org.jetbrains.compose.web.css.marginRight
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.selectors.plus
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Div
@@ -43,59 +46,75 @@ import org.jetbrains.compose.web.dom.Text
 
 object HeaderStyles : StyleSheet(AppStyleSheet) {
 
-    val header by style {
-        backgroundColor(primary)
-        height(56.px)
+  val header by style {
+    backgroundColor(primary)
+    height(56.px)
 
-        display(Flex)
-        alignItems(AlignItems.Center)
+    display(Flex)
+    alignItems(AlignItems.Center)
+  }
+
+  val title by style {
+    color(white)
+    margin(16.px)
+    display(Flex)
+
+    (self + " div") {
+      marginLeft(10.px)
+      marginRight(10.px)
     }
-
-    val title by style {
-        color(white)
-        margin(16.px)
-    }
+  }
 
 
-    val icons by style {
-        display(Flex)
-        alignItems(AlignItems.Center)
-        margin(8.px)
-        property("margin-left", "auto")
-    }
+  val icons by style {
+    display(Flex)
+    alignItems(AlignItems.Center)
+    margin(8.px)
+    property("margin-left", "auto")
+  }
 
-    val icon by style {
-        height(32.px)
-        width(32.px)
-        margin(8.px)
-    }
+  val icon by style {
+    height(32.px)
+    width(32.px)
+    margin(8.px)
+  }
 }
 
 @Composable
-fun Header() {
-    Div({ classes(header) }) {
-        Div({ classes(title) }) { Text("Se Mudando") }
-        Icons()
+fun Header(setPage: (Page) -> Unit) {
+  Div({ classes(header) }) {
+    Div({ classes(title) }) {
+      Div { Text("Se Mudando") }
+
+      Div({
+        onClick { setPage(Page.Home) }
+      }) { Text("Início") }
+
+      Div({
+        onClick { setPage(Page.WhoWeAre) }
+      }) { Text("Quem Somos") }
     }
+    Icons()
+  }
 }
 
 @Composable
 fun Icons() {
-    Div({ classes(icons) }) {
-        Div({ classes(icon) }) {
-            A("https://www.linkedin.com/company/projeto-se-mudando/") {
-                Img("icons/linkedin.png", "Linkedin")
-            }
-        }
-        Div({ classes(icon) }) {
-            A("https://www.instagram.com/se.mudando/") {
-                Img("icons/instagram.png", alt = "Instagram")
-            }
-        }
-        Div({ classes(icon) }) {
-            A("https://www.facebook.com/semudando") {
-                Img("icons/facebook.png", alt = "Facebook")
-            }
-        }
+  Div({ classes(icons) }) {
+    Div({ classes(icon) }) {
+      A("https://www.linkedin.com/company/projeto-se-mudando/") {
+        Img("icons/linkedin.png", "Linkedin")
+      }
     }
+    Div({ classes(icon) }) {
+      A("https://www.instagram.com/se.mudando/") {
+        Img("icons/instagram.png", alt = "Instagram")
+      }
+    }
+    Div({ classes(icon) }) {
+      A("https://www.facebook.com/semudando") {
+        Img("icons/facebook.png", alt = "Facebook")
+      }
+    }
+  }
 }

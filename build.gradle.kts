@@ -18,10 +18,11 @@
 
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
 
 plugins {
-    kotlin("multiplatform") version "1.5.21"
-    id("org.jetbrains.compose") version "0.5.0-build270"
+    kotlin("multiplatform") version "1.5.31"
+    id("org.jetbrains.compose") version "1.0.0-alpha4-build396"
 }
 
 repositories {
@@ -49,5 +50,12 @@ kotlin {
 }
 
 rootProject.plugins.withType(NodeJsRootPlugin::class.java) {
-    rootProject.the<NodeJsRootExtension>().versions.webpackDevServer.version = "4.0.0-rc.0"
+    rootProject.the<NodeJsRootExtension>().versions.webpackCli.version = "4.9.0"
+    rootProject.the<NodeJsRootExtension>().versions.webpackDevServer.version = "4.3.1"
+}
+
+rootProject.plugins.withType<YarnPlugin> {
+    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
+        resolution("@webpack-cli/serve", "1.6.0")
+    }
 }

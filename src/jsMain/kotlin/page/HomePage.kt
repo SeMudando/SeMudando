@@ -16,34 +16,35 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package br.com.semudando
+package br.com.semudando.page
 
 import androidx.compose.runtime.Composable
+import br.com.semudando.AppStyleSheet
 import br.com.semudando.AppStyleSheet.accentLight
 import br.com.semudando.AppStyleSheet.primaryLight
-import br.com.semudando.HomeStyles.accent
-import br.com.semudando.HomeStyles.big
-import br.com.semudando.HomeStyles.button
-import br.com.semudando.HomeStyles.container
-import br.com.semudando.HomeStyles.inviteAccent
-import br.com.semudando.HomeStyles.inviteButton
-import br.com.semudando.HomeStyles.inviteContainer
-import br.com.semudando.HomeStyles.inviteDescription
-import br.com.semudando.HomeStyles.inviteImage
-import br.com.semudando.HomeStyles.inviteTitle
-import br.com.semudando.HomeStyles.logo
-import br.com.semudando.HomeStyles.logoImg
-import br.com.semudando.HomeStyles.picture
-import br.com.semudando.HomeStyles.recycledBackground
-import br.com.semudando.HomeStyles.statement
-import br.com.semudando.HomeStyles.statementAuthor
-import br.com.semudando.HomeStyles.statementAuthorContainer
-import br.com.semudando.HomeStyles.statementContainer
-import br.com.semudando.HomeStyles.statementTexts
-import br.com.semudando.HomeStyles.text
-import br.com.semudando.HomeStyles.video
-import br.com.semudando.HomeStyles.videoBackground
-import br.com.semudando.HomeStyles.videoTitle
+import br.com.semudando.page.HomeStyles.accent
+import br.com.semudando.page.HomeStyles.big
+import br.com.semudando.page.HomeStyles.button
+import br.com.semudando.page.HomeStyles.container
+import br.com.semudando.page.HomeStyles.inviteAccent
+import br.com.semudando.page.HomeStyles.inviteButton
+import br.com.semudando.page.HomeStyles.inviteContainer
+import br.com.semudando.page.HomeStyles.inviteDescription
+import br.com.semudando.page.HomeStyles.inviteImage
+import br.com.semudando.page.HomeStyles.inviteTitle
+import br.com.semudando.page.HomeStyles.logo
+import br.com.semudando.page.HomeStyles.logoImg
+import br.com.semudando.page.HomeStyles.picture
+import br.com.semudando.page.HomeStyles.recycledBackground
+import br.com.semudando.page.HomeStyles.statement
+import br.com.semudando.page.HomeStyles.statementAuthor
+import br.com.semudando.page.HomeStyles.statementAuthorContainer
+import br.com.semudando.page.HomeStyles.statementContainer
+import br.com.semudando.page.HomeStyles.statementTexts
+import br.com.semudando.page.HomeStyles.text
+import br.com.semudando.page.HomeStyles.video
+import br.com.semudando.page.HomeStyles.videoBackground
+import br.com.semudando.page.HomeStyles.videoTitle
 import br.com.semudando.stripe.PaymentModal
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color.white
@@ -86,7 +87,7 @@ import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.Video
 
 @Composable
-fun Home() {
+fun HomePage() {
     TextBoxIntro()
 
     VideoIntro()
