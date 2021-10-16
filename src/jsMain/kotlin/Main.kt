@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import br.com.semudando.page.HomePage
+import br.com.semudando.page.ProgramPage
 import br.com.semudando.page.WhoWeArePage
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.Style
@@ -34,9 +35,9 @@ fun main() {
         Style(AppStyleSheet)
 
         Div {
-            val (page, setPage) = remember { mutableStateOf(Page.Home) }
+            val (page, setPage) = remember { mutableStateOf<Page>(Page.Home) }
 
-            Header(setPage)
+            Header(page, setPage)
 
             page.compose()
 
@@ -45,12 +46,17 @@ fun main() {
     }
 }
 
-enum class Page(
+sealed class Page(
     val title: String,
-    val compose: @Composable () -> Unit
+    val compose: @Composable () -> Unit,
 ) {
-    Home("Início", { HomePage() }),
-    WhoWeAre("Quem somos", { WhoWeArePage() });
+    object Home : Page("Início", { HomePage() })
+    object WhoWeAre : Page("Quem somos", { WhoWeArePage() })
+    object Program : Page("Programa abrindo portas", { ProgramPage() })
+
+    companion object {
+        fun values(): List<Page> = listOf(Home, WhoWeAre, Program)
+    }
 }
 
 object AppStyleSheet : StyleSheet() {
@@ -58,6 +64,7 @@ object AppStyleSheet : StyleSheet() {
     val primaryLight = Color("#02558b")
     val lightBlue = Color("#88d2f1")
     val darkGrayBlue = Color("#3577a2")
+    val cinnabar = Color("#eb4a3b")
 
     val accent = Color("#eb4a3b")
     val accentLight = Color("#d9554d")

@@ -23,6 +23,7 @@ import br.com.semudando.AppStyleSheet.primary
 import br.com.semudando.HeaderStyles.header
 import br.com.semudando.HeaderStyles.icon
 import br.com.semudando.HeaderStyles.icons
+import br.com.semudando.HeaderStyles.selected
 import br.com.semudando.HeaderStyles.title
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color.white
@@ -42,79 +43,87 @@ import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Img
+import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 object HeaderStyles : StyleSheet(AppStyleSheet) {
 
-  val header by style {
-    backgroundColor(primary)
-    height(56.px)
+   val header by style {
+      backgroundColor(primary)
+      height(56.px)
 
-    display(Flex)
-    alignItems(AlignItems.Center)
-  }
+      display(Flex)
+      alignItems(AlignItems.Center)
+   }
 
-  val title by style {
-    color(white)
-    margin(16.px)
-    display(Flex)
+   val title by style {
+      color(white)
+      margin(16.px)
+      display(Flex)
 
-    (self + " div") {
-      marginLeft(10.px)
-      marginRight(10.px)
-    }
-  }
+      (self + " div") {
+         marginLeft(10.px)
+         marginRight(10.px)
+      }
+   }
 
+   val selected by style {
 
-  val icons by style {
-    display(Flex)
-    alignItems(AlignItems.Center)
-    margin(8.px)
-    property("margin-left", "auto")
-  }
+   }
 
-  val icon by style {
-    height(32.px)
-    width(32.px)
-    margin(8.px)
-  }
+   val icons by style {
+      display(Flex)
+      alignItems(AlignItems.Center)
+      margin(8.px)
+      property("margin-left", "auto")
+   }
+
+   val icon by style {
+      height(32.px)
+      width(32.px)
+      margin(8.px)
+   }
 }
 
 @Composable
-fun Header(setPage: (Page) -> Unit) {
-  Div({ classes(header) }) {
-    Div({ classes(title) }) {
-      Div { Text("Se Mudando") }
+fun Header(currentPage: Page, setPage: (Page) -> Unit) {
+   Div({ classes(header) }) {
+      Div({ classes(title) }) {
+         Div { Text("Se Mudando") }
 
-      Div({
-        onClick { setPage(Page.Home) }
-      }) { Text("Início") }
-
-      Div({
-        onClick { setPage(Page.WhoWeAre) }
-      }) { Text("Quem Somos") }
-    }
-    Icons()
-  }
+         Page.values().forEach { page ->
+            Div({ onClick { setPage(page) } }) {
+               if (currentPage == page) {
+                  Span({ classes(selected) }) {
+                     Text(page.title)
+                  }
+               } else {
+                  Text(page.title)
+               }
+            }
+         }
+      }
+      Icons()
+   }
 }
 
 @Composable
 fun Icons() {
-  Div({ classes(icons) }) {
-    Div({ classes(icon) }) {
-      A("https://www.linkedin.com/company/projeto-se-mudando/") {
-        Img("icons/linkedin.png", "Linkedin")
+   Div({ classes(icons) }) {
+      Div({ classes(icon) }) {
+         A("https://www.linkedin.com/company/projeto-se-mudando/") {
+            Img("icons/linkedin.png", "Linkedin")
+         }
       }
-    }
-    Div({ classes(icon) }) {
-      A("https://www.instagram.com/se.mudando/") {
-        Img("icons/instagram.png", alt = "Instagram")
+      Div({ classes(icon) }) {
+         A("https://www.instagram.com/se.mudando/") {
+            Img("icons/instagram.png", alt = "Instagram")
+         }
       }
-    }
-    Div({ classes(icon) }) {
-      A("https://www.facebook.com/semudando") {
-        Img("icons/facebook.png", alt = "Facebook")
+      Div({ classes(icon) }) {
+         A("https://www.facebook.com/semudando") {
+            Img("icons/facebook.png", alt = "Facebook")
+         }
       }
-    }
-  }
+   }
 }
