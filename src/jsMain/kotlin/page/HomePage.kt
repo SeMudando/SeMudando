@@ -87,268 +87,268 @@ import org.jetbrains.compose.web.dom.Video
 
 @Composable
 fun HomePage() {
-    TextBoxIntro()
+  TextBoxIntro()
 
-    VideoIntro()
+  VideoIntro()
 
-    Statement()
+  Statement()
 
-    Invite()
+  Invite()
 }
 
 @Composable
 fun TextBoxIntro() {
-    Div({ classes(recycledBackground) }) {
-        Div({ classes(container) }) {
-            Div({ classes(logo) }) {
-                Img("logos/logo.png") { classes(logoImg) }
-            }
+  Div({ classes(recycledBackground) }) {
+    Div({ classes(container) }) {
+      Div({ classes(logo) }) {
+        Img("logos/logo.png") { classes(logoImg) }
+      }
 
-            Span({ classes(text) }) {
-                Text("Nascemos para ter ")
-                Span({ classes(accent) }) {
-                    Text("impacto perene")
-                }
-                Text(" na vida das pessoas, reinserindo-as à sociedade por meio do nosso programa baseado no Rapid Re-Housing.")
-            }
-
-            Span({ classes(text, big) }) {
-                Text("Juntos nós podemos! Vamos?")
-            }
-
-            Button({ classes(button); onClick {  } }) {
-                Text("APOIE NOSSA CAUSA")
-            }
+      Span({ classes(text) }) {
+        Text("Nascemos para ter ")
+        Span({ classes(accent) }) {
+          Text("impacto perene")
         }
+        Text(" na vida das pessoas, reinserindo-as à sociedade por meio do nosso programa baseado no Rapid Re-Housing.")
+      }
+
+      Span({ classes(text, big) }) {
+        Text("Juntos nós podemos! Vamos?")
+      }
+
+      Button({ classes(button); onClick { } }) {
+        Text("APOIE NOSSA CAUSA")
+      }
     }
+  }
 }
 
 @Composable
 fun VideoIntro() {
-    Div({ classes(videoBackground) }) {
-        Span({ classes(videoTitle) }) {
-            Text("Um pouco do nosso ")
-            Span({ classes(accent) }) {
-                Text("impacto")
-            }
-        }
-
-        Video({
-            classes(video)
-            attr("controls", "true")
-        }) {
-            Source({
-                attr("src", "videos/pitch.mp4")
-                attr("type", "video/mp4")
-            })
-        }
+  Div({ classes(videoBackground) }) {
+    Span({ classes(videoTitle) }) {
+      Text("Um pouco do nosso ")
+      Span({ classes(accent) }) {
+        Text("impacto")
+      }
     }
+
+    Video({
+      classes(video)
+      attr("controls", "true")
+    }) {
+      Source({
+        attr("src", "videos/pitch.mp4")
+        attr("type", "video/mp4")
+      })
+    }
+  }
 }
 
 @Composable
 fun Statement() {
-    Div({ classes(recycledBackground) }) {
-        Div({ classes(statementContainer) }) {
-            Img("images/luciano.png", "Luciano Vicente de Souza") { classes(picture) }
+  Div({ classes(recycledBackground) }) {
+    Div({ classes(statementContainer) }) {
+      Img("images/assistido1.png", "Luciano Vicente de Souza") { classes(picture) }
 
-            Div({ classes(statementTexts) }) {
-                Span({ classes(statement) }) {
-                    Text("Eu preciso realmente dessa oportunidade. Eu quero aprender mais. A gente nunca sabe tudo." + "Onde eu gostaria de estar? Eu quero estar aqui. Esse Luciano mudado, renovado.")
-                }
-
-                Div({ classes(statementAuthorContainer) }) {
-                    Span({ classes(statementAuthor) }) {
-                        Text("Luciano Vicente de Souza\nAssistido")
-                    }
-                }
-            }
+      Div({ classes(statementTexts) }) {
+        Span({ classes(statement) }) {
+          Text("Eu preciso realmente dessa oportunidade. Eu quero aprender mais. A gente nunca sabe tudo." + "Onde eu gostaria de estar? Eu quero estar aqui. Esse Luciano mudado, renovado.")
         }
+
+        Div({ classes(statementAuthorContainer) }) {
+          Span({ classes(statementAuthor) }) {
+            Text("Luciano Vicente de Souza\nAssistido")
+          }
+        }
+      }
     }
+  }
 }
 
 @Composable
 fun Invite() {
-    Div({ classes(inviteContainer) }) {
+  Div({ classes(inviteContainer) }) {
 
-        Div {
-            Span({ classes(inviteTitle) }) {
-                Text("Faça parte")
-            }
+    Div {
+      Span({ classes(inviteTitle) }) {
+        Text("Faça parte")
+      }
 
-            Div({ style { marginTop(36.px) } }) {
-                Span({ classes(inviteDescription) }) {
-                    Text("do nosso ")
-                }
-                Span({ classes(inviteAccent) }) {
-                    Text("time de doadores")
-                }
-            }
-
-            Button({ classes(inviteButton) }) {
-                Text("QUERO FAZER PARTE")
-            }
+      Div({ style { marginTop(36.px) } }) {
+        Span({ classes(inviteDescription) }) {
+          Text("do nosso ")
         }
-
-        Div({ style { property("margin-left", "auto") } }) {
-            Img("images/equipe.jpeg") { classes(inviteImage) }
+        Span({ classes(inviteAccent) }) {
+          Text("time de doadores")
         }
+      }
+
+      Button({ classes(inviteButton) }) {
+        Text("QUERO FAZER PARTE")
+      }
     }
+
+    Div({ style { property("margin-left", "auto") } }) {
+      Img("images/equipe.jpeg") { classes(inviteImage) }
+    }
+  }
 }
 
 object HomeStyles : StyleSheet(AppStyleSheet) {
 
-    val recycledBackground by style {
-        minHeight(300.px)
-        backgroundImage("""url("backgrounds/recycled.jpg")""")
-        display(Flex)
-    }
+  val recycledBackground by style {
+    minHeight(300.px)
+    backgroundImage("""url("backgrounds/recycled.jpg")""")
+    display(Flex)
+  }
 
-    val container by style {
-        width(70.percent)
-        property("margin", "auto")
-        marginBottom(60.px)
-    }
+  val container by style {
+    width(70.percent)
+    property("margin", "auto")
+    marginBottom(60.px)
+  }
 
-    val logo by style {
-        marginTop(16.px)
-    }
+  val logo by style {
+    marginTop(16.px)
+  }
 
-    val logoImg by style {
-        maxWidth(300.px)
-    }
+  val logoImg by style {
+    maxWidth(300.px)
+  }
 
-    val text by style {
-        fontSize(30.px)
-        lineHeight(1.5.em)
-        display(Block)
-        textAlign("center")
-    }
+  val text by style {
+    fontSize(30.px)
+    lineHeight(1.5.em)
+    display(Block)
+    textAlign("center")
+  }
 
-    val accent by style {
-        backgroundColor(AppStyleSheet.accent)
-        color(white)
-    }
+  val accent by style {
+    backgroundColor(AppStyleSheet.accent)
+    color(white)
+  }
 
-    val big by style {
-        marginTop(16.px)
-        fontSize(42.px)
-        fontWeight("bold")
-        color(white)
-    }
+  val big by style {
+    marginTop(16.px)
+    fontSize(42.px)
+    fontWeight("bold")
+    color(white)
+  }
 
-    val button by style {
-        color(white)
-        backgroundColor(AppStyleSheet.accentLight)
-        fontSize(32.px)
-        padding(24.px)
-        paddingLeft(128.px)
-        paddingRight(128.px)
-        letterSpacing(6.px)
-        borderRadius(20.px)
-        property("margin", "16px auto")
-        marginTop(64.px)
-        display(Flex)
-    }
+  val button by style {
+    color(white)
+    backgroundColor(AppStyleSheet.accentLight)
+    fontSize(32.px)
+    padding(24.px)
+    paddingLeft(128.px)
+    paddingRight(128.px)
+    letterSpacing(6.px)
+    borderRadius(20.px)
+    property("margin", "16px auto")
+    marginTop(64.px)
+    display(Flex)
+  }
 
-    val videoBackground by style {
-        backgroundColor(primaryLight)
-        minHeight(300.px)
-        display(Flex)
-        flexDirection(Column)
-        alignItems(AlignItems.Center)
-        padding(32.px)
-    }
+  val videoBackground by style {
+    backgroundColor(primaryLight)
+    minHeight(500.px)
+    display(Flex)
+    flexDirection(Column)
+    alignItems(AlignItems.Center)
+    padding(32.px)
+  }
 
-    val videoTitle by style {
-        color(white)
-        fontSize(32.px)
-        margin(16.px)
-        property("text-shadow", "black 0px 3px 4px")
-    }
+  val videoTitle by style {
+    color(white)
+    fontSize(32.px)
+    margin(16.px)
+    property("text-shadow", "black 0px 3px 4px")
+  }
 
-    val video by style {
-        maxWidth(600.px)
-    }
+  val video by style {
+    maxWidth(600.px)
+  }
 
-    val picture by style {
-        maxWidth(600.px)
-        maxHeight(400.px)
+  val picture by style {
+    maxWidth(600.px)
+    maxHeight(400.px)
 
-        margin(16.px)
-    }
+    margin(16.px)
+  }
 
-    val statementContainer by style {
-        width(60.percent)
-        property("margin", "auto")
-        display(Flex)
-        alignItems(AlignItems.Center)
-    }
+  val statementContainer by style {
+    width(60.percent)
+    property("margin", "auto")
+    display(Flex)
+    alignItems(AlignItems.Center)
+  }
 
-    val statementTexts by style {
-        textAlign("center")
-        width(50.percent)
-        property("margin-left", "auto")
-    }
+  val statementTexts by style {
+    textAlign("center")
+    width(50.percent)
+    property("margin-left", "auto")
+  }
 
-    val statement by style {
-        color(white)
-        fontWeight("italic")
-        fontSize(24.px)
-    }
+  val statement by style {
+    color(white)
+    fontWeight("italic")
+    fontSize(24.px)
+  }
 
-    val statementAuthorContainer by style {
-        textAlign("end")
-        whiteSpace("pre-line")
-        margin(16.px)
-    }
+  val statementAuthorContainer by style {
+    textAlign("end")
+    whiteSpace("pre-line")
+    margin(16.px)
+  }
 
-    val statementAuthor by style {
-        color(white)
-        fontWeight("bold")
-    }
+  val statementAuthor by style {
+    color(white)
+    fontWeight("bold")
+  }
 
-    val inviteContainer by style {
-        width(70.percent)
-        minHeight(400.px)
-        property("margin", "auto")
-        marginTop(64.px)
-        display(Flex)
-    }
+  val inviteContainer by style {
+    width(70.percent)
+    minHeight(400.px)
+    property("margin", "auto")
+    marginTop(64.px)
+    display(Flex)
+  }
 
-    val inviteTitle by style {
-        color(primaryLight)
-        fontSize(60.px)
-        letterSpacing(5.px)
-        property("text-shadow", "black 0px 3px 4px")
-    }
+  val inviteTitle by style {
+    color(primaryLight)
+    fontSize(60.px)
+    letterSpacing(5.px)
+    property("text-shadow", "black 0px 3px 4px")
+  }
 
-    val inviteDescription by style {
-        color(primaryLight)
-        letterSpacing(3.px)
-        fontSize(30.px)
-    }
+  val inviteDescription by style {
+    color(primaryLight)
+    letterSpacing(3.px)
+    fontSize(30.px)
+  }
 
-    val inviteAccent by style {
-        color(white)
-        backgroundColor(accentLight)
-        letterSpacing(3.px)
-        fontSize(30.px)
-    }
+  val inviteAccent by style {
+    color(white)
+    backgroundColor(accentLight)
+    letterSpacing(3.px)
+    fontSize(30.px)
+  }
 
-    val inviteButton by style {
-        color(white)
-        backgroundColor(AppStyleSheet.accentLight)
-        fontSize(32.px)
-        padding(24.px)
-        letterSpacing(6.px)
-        borderRadius(20.px)
-        property("margin", "16px auto")
-        marginTop(64.px)
-        display(Flex)
-    }
+  val inviteButton by style {
+    color(white)
+    backgroundColor(AppStyleSheet.accentLight)
+    fontSize(32.px)
+    padding(24.px)
+    letterSpacing(6.px)
+    borderRadius(20.px)
+    property("margin", "16px auto")
+    marginTop(64.px)
+    display(Flex)
+  }
 
-    val inviteImage by style {
-        maxWidth(600.px)
-        maxHeight(400.px)
-    }
+  val inviteImage by style {
+    maxWidth(600.px)
+    maxHeight(400.px)
+  }
 }

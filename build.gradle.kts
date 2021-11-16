@@ -19,43 +19,51 @@
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
 import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
-    kotlin("multiplatform") version "1.5.31"
-    id("org.jetbrains.compose") version "1.0.0-alpha4-build396"
+   kotlin("multiplatform") version "1.5.31"
+   id("org.jetbrains.compose") version "1.0.0-beta1"
 }
 
 repositories {
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    google()
+   mavenCentral()
+   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+   google()
 }
 
 kotlin {
-    js(IR) {
-        browser()
-        binaries.executable()
-    }
-    sourceSets {
-        val jsMain by getting {
-            dependencies {
-                implementation(compose.web.core)
-                implementation(compose.web.widgets)
-                implementation(compose.runtime)
-                implementation(npm("@stripe/stripe-js", "1.18.0"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-            }
-        }
-    }
+   js(IR) {
+      browser()
+      binaries.executable()
+   }
+   sourceSets {
+      val jsMain by getting {
+         dependencies {
+            implementation(compose.web.core)
+            implementation(compose.web.widgets)
+            implementation(compose.runtime)
+            implementation(npm("@stripe/stripe-js", "1.18.0"))
+            api(npm("imask", "6.2.2"))
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+         }
+      }
+
+      val jsPlayland by creating {
+         dependsOn(jsMain)
+         dependencies {
+         }
+      }
+   }
 }
 
 rootProject.plugins.withType(NodeJsRootPlugin::class.java) {
-    rootProject.the<NodeJsRootExtension>().versions.webpackCli.version = "4.9.0"
-    rootProject.the<NodeJsRootExtension>().versions.webpackDevServer.version = "4.3.1"
+   rootProject.the<NodeJsRootExtension>().versions.webpackCli.version = "4.9.0"
+   rootProject.the<NodeJsRootExtension>().versions.webpackDevServer.version = "4.3.1"
 }
 
 rootProject.plugins.withType<YarnPlugin> {
-    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension>().apply {
-        resolution("@webpack-cli/serve", "1.6.0")
-    }
+   rootProject.the<YarnRootExtension>().apply {
+      resolution("@webpack-cli/serve", "1.6.0")
+   }
 }

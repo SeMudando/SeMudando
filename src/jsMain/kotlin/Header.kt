@@ -25,6 +25,7 @@ import br.com.semudando.HeaderStyles.icon
 import br.com.semudando.HeaderStyles.icons
 import br.com.semudando.HeaderStyles.selected
 import br.com.semudando.HeaderStyles.title
+import br.com.semudando.plausible.plausible
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color.white
 import org.jetbrains.compose.web.css.DisplayStyle.Companion.Flex
@@ -110,7 +111,7 @@ fun Header(currentPage: Page, setPage: (Page) -> Unit) {
 @Composable
 fun Icons() {
    Div({ classes(icons) }) {
-      Div({ classes(icon) }) {
+      Div({ classes(icon); onClick { plausible("Linkedin") } }) {
          A("https://www.linkedin.com/company/projeto-se-mudando/") {
             Img("icons/linkedin.png", "Linkedin")
          }
