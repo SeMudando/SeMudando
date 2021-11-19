@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  backend:
+    build: backend
+    labels:
+      caddy: api.semudando.com.br
+      caddy.reverse_proxy: "{{upstreams 9090}}"
+  frontend:
+    build: frontend
+    labels:
+      caddy: semudando.com.br
+      caddy.reverse_proxy: "{{upstreams 80}}"

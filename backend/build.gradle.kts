@@ -1,6 +1,11 @@
 plugins {
+  application
   kotlin("jvm")
   kotlin("plugin.serialization")
+}
+
+application {
+  mainClass.set("br.com.semudando.ServerKt")
 }
 
 dependencies {
