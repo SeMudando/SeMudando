@@ -17,15 +17,7 @@
  */
 package br.com.semudando
 
-import br.com.semudando.AppStyleSheet
-import br.com.semudando.components.DonationForm
-import org.jetbrains.compose.web.css.Style
-import org.jetbrains.compose.web.renderComposable
+import kotlinx.serialization.Serializable
 
-fun main() {
-   renderComposable("root") {
-      Style(AppStyleSheet)
-
-      DonationForm()
-   }
-}
+@Serializable
+data class CreateStripePaymentRequest(val amountInCents: Long)

@@ -16,29 +16,21 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+package br.com.semudando.stripe
 
-plugins {
-    kotlin("multiplatform") version "1.5.31" apply false
-    kotlin("plugin.serialization") version "1.5.31"
+import br.com.semudando.StripeClientSecretResponse
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.js.Js
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.request.get
+import io.ktor.client.request.parameter
+
+val httpClient = HttpClient(Js) {
+  install(JsonFeature)
 }
 
-group = "br.com.semudando"
-version = "1.0.0"
-
-repositories {
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    google()
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        google()
-    }
+suspend fun startDonation(amountCents: Long): String {
+  return httpClient.get<StripeClientSecretResponse>("http://localhost:9090/payment") {
+    parameter("amountCents", amountCents)
+  }.clientSecret
 }

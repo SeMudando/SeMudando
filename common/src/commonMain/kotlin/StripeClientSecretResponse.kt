@@ -16,29 +16,9 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+package br.com.semudando
 
-plugins {
-    kotlin("multiplatform") version "1.5.31" apply false
-    kotlin("plugin.serialization") version "1.5.31"
-}
+import kotlinx.serialization.Serializable
 
-group = "br.com.semudando"
-version = "1.0.0"
-
-repositories {
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    google()
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        google()
-    }
-}
+@Serializable
+data class StripeClientSecretResponse(val clientSecret: String)

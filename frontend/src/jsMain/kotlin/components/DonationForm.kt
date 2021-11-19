@@ -21,31 +21,28 @@
 package br.com.semudando.components
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.NoLiveLiterals
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import br.com.semudando.AppStyleSheet
 import br.com.semudando.components.DonationFormStyle.allBoxesContainer
 import br.com.semudando.components.DonationFormStyle.boxContainer
-import br.com.semudando.components.DonationFormStyle.creditCardCvvInput
-import br.com.semudando.components.DonationFormStyle.creditCardExpirationDateInput
-import br.com.semudando.components.DonationFormStyle.creditCardForm
-import br.com.semudando.components.DonationFormStyle.creditCardLabel
-import br.com.semudando.components.DonationFormStyle.creditCardNumberInput
 import br.com.semudando.components.DonationFormStyle.donationButton
 import br.com.semudando.components.DonationFormStyle.donationValue
 import br.com.semudando.components.DonationFormStyle.inputIcon
+import br.com.semudando.components.DonationFormStyle.loader
 import br.com.semudando.components.DonationFormStyle.selectedBoxContainer
 import br.com.semudando.components.DonationFormStyle.unselectedBoxContainer
-import br.com.semudando.masks.CreditCardMask
-import br.com.semudando.masks.CvvMask
-import br.com.semudando.masks.DateMask
 import br.com.semudando.masks.MoneyMask
+import br.com.semudando.stripe.startDonation
+import br.com.semudando.stripe.stripe
+import kotlinx.coroutines.await
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
-import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.attributes.placeholder
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color.black
 import org.jetbrains.compose.web.css.Color.white
@@ -61,15 +58,14 @@ import org.jetbrains.compose.web.css.backgroundColor
 import org.jetbrains.compose.web.css.border
 import org.jetbrains.compose.web.css.borderRadius
 import org.jetbrains.compose.web.css.color
-import org.jetbrains.compose.web.css.deg
 import org.jetbrains.compose.web.css.display
-import org.jetbrains.compose.web.css.filter
 import org.jetbrains.compose.web.css.flexBasis
 import org.jetbrains.compose.web.css.flexWrap
 import org.jetbrains.compose.web.css.fontSize
 import org.jetbrains.compose.web.css.fontStyle
 import org.jetbrains.compose.web.css.gap
 import org.jetbrains.compose.web.css.height
+import org.jetbrains.compose.web.css.jsObject
 import org.jetbrains.compose.web.css.justifyContent
 import org.jetbrains.compose.web.css.margin
 import org.jetbrains.compose.web.css.marginTop
@@ -84,19 +80,26 @@ import org.jetbrains.compose.web.css.top
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.I
 import org.jetbrains.compose.web.dom.Img
-import org.jetbrains.compose.web.dom.Input
-import org.jetbrains.compose.web.dom.PasswordInput
 import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 import org.jetbrains.compose.web.dom.TextInput
 import org.w3c.dom.HTMLInputElement
+import kotlin.js.Promise
 
 val values = listOf("1", "5", "10", "25", "50", "100")
 
+@NoLiveLiterals
 @Composable
 fun DonationForm() {
   var selected by remember { mutableStateOf(values[1]) }
+  val coroutineScope = rememberCoroutineScope()
+  var clientSecret by remember { mutableStateOf("") }
+
+  LaunchedEffect(selected) {
+    clientSecret = startDonation(selected.filter { it in '0'..'9' }.toLong().times(100))
+  }
 
   Div({ classes(allBoxesContainer) }) {
     values.forEach {
@@ -117,74 +120,51 @@ fun DonationForm() {
       }
     }
 
-    Div({ classes(creditCardLabel) }) {
-      Img("icons/credit-card.png") {
-        style {
-          width(24.px)
-          height(24.px)
-          filter { invert(100.percent) }
-        }
-      }
-      Span { Text("Cartão de Crédito") }
-      Img("icons/lock-check.png") {
-        style {
-          filter {
-            invert(78.percent)
-            sepia(46.percent)
-            saturate(4268.percent)
-            hueRotate(77.deg)
-            brightness(88.percent)
-            contrast(84.percent)
-          }
-        }
-      }
-    }
+    var elements: dynamic = jsObject { }
+    var errorMessage by remember { mutableStateOf<String?>("") }
+    var isLoading by remember { mutableStateOf(false) }
 
-    val creditCardNumber = remember { mutableStateOf("") }
-    val creditCardExpirationDate = remember { mutableStateOf("") }
-    val creditCardCvv = remember { mutableStateOf("") }
 
-    Div({ classes(creditCardForm) }) {
-      Input(InputType.Text) {
-        prop({ element: HTMLInputElement, _: Any -> CreditCardMask(element) }, "donationInput")
-
-        value(creditCardNumber.value)
-        classes(creditCardNumberInput)
-        placeholder("Número do cartão de crédito")
-        onInput {
-          creditCardNumber.value = it.value
-        }
-      }
-
-      TextInput(creditCardExpirationDate.value) {
-        prop({ element: HTMLInputElement, _: Any -> DateMask(element) }, "donationInput")
-        classes(creditCardExpirationDateInput)
-        placeholder("Val. ex. 11/29")
-        onInput {
-          creditCardExpirationDate.value = it.value
-        }
-      }
-
-      PasswordInput(creditCardCvv.value) {
-        prop({ element: HTMLInputElement, _: Any -> CvvMask(element) }, "donationInput")
-        classes(creditCardCvvInput)
-        placeholder("CVV ex. 123")
-        onInput {
-          creditCardCvv.value = it.value
-        }
-      }
-    }
-
+    Div({ id("payment-element") })
     Button({
-      classes(donationButton); onClick {
-      makeDonation(creditCardNumber,
-        creditCardExpirationDate,
-        creditCardCvv)
+      classes(donationButton)
+      onClick {
+      if (isLoading) return@onClick
+      isLoading = true
+      coroutineScope.launch {
+        val response = (stripe.confirmPayment(jsObject {
+          this.elements = elements
+          confirmParams = jsObject {
+            return_url = "https://semudando.com.br"
+          }
+        }) as Promise<dynamic>).await()
+
+        if (response.error != null) {
+          errorMessage = response.error.message
+        }
+        isLoading = false
+        selected = ""
+      }
     }
     }) {
-      Span {
-        Text("DOAR R$$selected,00")
+      Span { Text("DOAR R$$selected,00") }
+      if (isLoading) {
+        I({ classes("fa", "fa-spinner", "fa-spin", loader) })
       }
+    }
+
+    Div {
+      if (!errorMessage.isNullOrBlank()) {
+        Span { Text(errorMessage!!) }
+      }
+    }
+
+    if (clientSecret.isNotEmpty()) {
+      val options = jsObject<dynamic> {
+        this.clientSecret = clientSecret
+      }
+      elements = stripe.elements(options)
+      elements.create("payment").mount("#payment-element")
     }
   }
 }
@@ -203,16 +183,6 @@ fun UnselectedBox(value: String, click: () -> Unit) {
   Button({ classes(boxContainer, unselectedBoxContainer); onClick { click() } }) {
     Span { Text(value) }
   }
-}
-
-fun makeDonation(
-  ccNumber: MutableState<String>,
-  ccExpirationDate: MutableState<String>,
-  ccCvv: MutableState<String>,
-) {
-  ccNumber.value = ""
-  ccExpirationDate.value = ""
-  ccCvv.value = ""
 }
 
 object DonationFormStyle : StyleSheet(AppStyleSheet) {
@@ -318,5 +288,11 @@ object DonationFormStyle : StyleSheet(AppStyleSheet) {
       fontSize(24.px)
       fontStyle("bold")
     }
+  }
+
+  val loader by style {
+    color(white)
+    padding(12.px)
+    fontSize(16.px)
   }
 }

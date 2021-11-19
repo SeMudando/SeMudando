@@ -19,31 +19,34 @@
 package br.com.semudando
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import br.com.semudando.components.DonationForm
 import br.com.semudando.page.DonatePage
 import br.com.semudando.page.HomePage
 import br.com.semudando.page.ProgramPage
 import br.com.semudando.page.WhoWeArePage
+import br.com.semudando.stripe.Stripe.loadStripe
+import br.com.semudando.stripe.startStripe
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.Style
 import org.jetbrains.compose.web.css.StyleSheet
 import org.jetbrains.compose.web.css.boxSizing
-import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.renderComposable
 
-fun main() {
+suspend fun main() {
+  startStripe()
   renderComposable("root") {
     Style(AppStyleSheet)
-    Div {
-      val (page, setPage) = remember { mutableStateOf<Page>(Page.Home) }
-
-      Header(page, setPage)
-
-      page.compose()
-
-      Footer()
-    }
+    DonationForm()
+//    Div {
+//      val
+  //      (page, setPage) = remember { mutableStateOf<Page>(Page.Home) }
+//
+//      Header(page, setPage)
+//
+//      page.compose()
+//
+//      Footer()
+//    }
   }
 }
 

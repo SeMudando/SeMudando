@@ -16,29 +16,23 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
-
 plugins {
-    kotlin("multiplatform") version "1.5.31" apply false
-    kotlin("plugin.serialization") version "1.5.31"
+  kotlin("multiplatform")
+  kotlin("plugin.serialization")
 }
 
-group = "br.com.semudando"
-version = "1.0.0"
+kotlin {
+  jvm()
+  js(IR) {
+    browser()
+    binaries.executable()
+  }
 
-repositories {
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    google()
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        google()
+  sourceSets {
+    val commonMain by getting {
+      dependencies {
+        api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+      }
     }
+  }
 }

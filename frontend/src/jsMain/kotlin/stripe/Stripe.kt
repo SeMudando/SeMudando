@@ -15,30 +15,22 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+package br.com.semudando.stripe
 
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
-import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
-import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+import br.com.semudando.stripe.Stripe.loadStripe
+import kotlinx.coroutines.await
+import kotlin.js.Promise
 
-plugins {
-    kotlin("multiplatform") version "1.5.31" apply false
-    kotlin("plugin.serialization") version "1.5.31"
+@JsModule("@stripe/stripe-js")
+@JsNonModule
+external object Stripe {
+  fun loadStripe(publishableKey: String): Promise<dynamic>
 }
 
-group = "br.com.semudando"
-version = "1.0.0"
+var stripe: dynamic = null
 
-repositories {
-    mavenCentral()
-    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-    google()
-}
-
-allprojects {
-    repositories {
-        mavenCentral()
-        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        google()
-    }
+suspend fun startStripe(){
+  stripe = loadStripe(
+    "pk_test_51JIv2cD0fOKTQjSDXK0rwdcFNeANXf9s2GaKfsoQZjJ1b1BcSy8TIMIVSmTPIcOdgAV1dPCbUFm3frFhli0Ta4gZ00Tb4eB3a3"
+  ).await()
 }
