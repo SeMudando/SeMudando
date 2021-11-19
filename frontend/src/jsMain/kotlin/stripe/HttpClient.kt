@@ -30,7 +30,7 @@ val httpClient = HttpClient(Js) {
 }
 
 suspend fun startDonation(amountCents: Long): String {
-  return httpClient.get<StripeClientSecretResponse>("https://api.semudando.com.br/payment") {
+  return httpClient.get<StripeClientSecretResponse>("https://semudando.com.br/api/payment") {
     parameter("amountCents", amountCents)
   }.clientSecret
 }
