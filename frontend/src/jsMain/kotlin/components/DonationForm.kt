@@ -125,7 +125,7 @@ fun DonationForm() {
     var isLoading by remember { mutableStateOf(false) }
 
 
-    Div({ id("payment-element") })
+    Div({ id("payment-element"); style { width(100.percent) } })
     Button({
       classes(donationButton)
       onClick {
