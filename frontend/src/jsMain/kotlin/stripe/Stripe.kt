@@ -31,6 +31,6 @@ var stripe: dynamic = null
 
 suspend fun startStripe(){
   stripe = loadStripe(
-    "pk_test_51JIv2cD0fOKTQjSDXK0rwdcFNeANXf9s2GaKfsoQZjJ1b1BcSy8TIMIVSmTPIcOdgAV1dPCbUFm3frFhli0Ta4gZ00Tb4eB3a3"
+    "pk_live_51JIv2cD0fOKTQjSDanRX38G8j0l0eZ1QlPkKHs5AaIz29kvuFJSVSR05Q8R50zwWOAVivyr0uO1lM10glAbt4skl00GNzrZfTk"
   ).await()
 }
