@@ -37,8 +37,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 
 fun main() {
-  Stripe.apiKey =
-    "sk_test_51JIv2cD0fOKTQjSDaQ47Ss0cW3cbsfTFZAqve6ksniU7NiwAluQpWsW13zfCOfxvVM8mkzeVnjINtVNyJHkpdoS500mrGnje2D"  //System.getenv("STRIPE_SECRET_KEY")
+  Stripe.apiKey = System.getenv("STRIPE_API_KEY")
 
   embeddedServer(Netty, port = 9090) {
     install(ContentNegotiation) {
