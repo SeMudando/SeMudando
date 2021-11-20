@@ -9,6 +9,7 @@ services:
     build: backend
     networks:
       - caddy
+    env_file: stripe.env
     labels:
       caddy: semudando.com.br
       caddy.handle_path: /api/*
