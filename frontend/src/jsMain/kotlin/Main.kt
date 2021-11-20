@@ -21,6 +21,8 @@ package br.com.semudando
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import br.com.semudando.components.DonationForm
 import br.com.semudando.page.DonatePage
 import br.com.semudando.page.HomePage
@@ -34,16 +36,17 @@ import org.jetbrains.compose.web.css.boxSizing
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.renderComposable
 
+var pageState by mutableStateOf<Page>(Page.Home)
+
+
 suspend fun main() {
   startStripe()
   renderComposable("root") {
     Style(AppStyleSheet)
     Div {
-      val (page, setPage) = remember { mutableStateOf<Page>(Page.Home) }
+      Header()
 
-      Header(page, setPage)
-
-      page.compose()
+      pageState.compose()
 
       Footer()
     }

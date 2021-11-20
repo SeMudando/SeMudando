@@ -87,14 +87,14 @@ object HeaderStyles : StyleSheet(AppStyleSheet) {
 }
 
 @Composable
-fun Header(currentPage: Page, setPage: (Page) -> Unit) {
+fun Header() {
    Div({ classes(header) }) {
       Div({ classes(title) }) {
          Div { Text("Se Mudando") }
 
          Page.values().forEach { page ->
-            Div({ onClick { setPage(page) } }) {
-               if (currentPage == page) {
+            Div({ onClick { pageState = page } }) {
+               if (pageState == page) {
                   Span({ classes(selected) }) {
                      Text(page.title)
                   }

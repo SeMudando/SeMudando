@@ -22,6 +22,8 @@ package br.com.semudando.page
 
 import androidx.compose.runtime.Composable
 import br.com.semudando.AppStyleSheet
+import br.com.semudando.Page
+import br.com.semudando.Page.Donate
 import br.com.semudando.page.WhoWeAreStyles.introButton
 import br.com.semudando.page.WhoWeAreStyles.introContainer
 import br.com.semudando.page.WhoWeAreStyles.introContent
@@ -43,6 +45,7 @@ import br.com.semudando.page.WhoWeAreStyles.teamMemberContainer
 import br.com.semudando.page.WhoWeAreStyles.teamMemberName
 import br.com.semudando.page.WhoWeAreStyles.video
 import br.com.semudando.page.WhoWeAreStyles.whiteBold
+import br.com.semudando.pageState
 import org.jetbrains.compose.web.ExperimentalComposeWebApi
 import org.jetbrains.compose.web.css.AlignContent
 import org.jetbrains.compose.web.css.AlignItems
@@ -130,7 +133,7 @@ fun Intro() {
           }
         }
       }
-      Button({ classes(introButton) }) {
+      Button({ classes(introButton); onClick { pageState = Donate } }) {
         Text("Juntos, nós podemos! Vamos?")
       }
     }

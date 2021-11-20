@@ -22,6 +22,8 @@ import androidx.compose.runtime.Composable
 import br.com.semudando.AppStyleSheet
 import br.com.semudando.AppStyleSheet.accentLight
 import br.com.semudando.AppStyleSheet.primaryLight
+import br.com.semudando.Page
+import br.com.semudando.Page.Donate
 import br.com.semudando.page.HomeStyles.accent
 import br.com.semudando.page.HomeStyles.big
 import br.com.semudando.page.HomeStyles.button
@@ -45,6 +47,7 @@ import br.com.semudando.page.HomeStyles.text
 import br.com.semudando.page.HomeStyles.video
 import br.com.semudando.page.HomeStyles.videoBackground
 import br.com.semudando.page.HomeStyles.videoTitle
+import br.com.semudando.pageState
 import org.jetbrains.compose.web.css.AlignItems
 import org.jetbrains.compose.web.css.Color.white
 import org.jetbrains.compose.web.css.DisplayStyle.Companion.Block
@@ -116,7 +119,7 @@ fun TextBoxIntro() {
         Text("Juntos nós podemos! Vamos?")
       }
 
-      Button({ classes(button); onClick { } }) {
+      Button({ classes(button); onClick { pageState = Donate } }) {
         Text("APOIE NOSSA CAUSA")
       }
     }
@@ -184,7 +187,7 @@ fun Invite() {
         }
       }
 
-      Button({ classes(inviteButton) }) {
+      Button({ classes(inviteButton); onClick { pageState = Donate } }) {
         Text("QUERO FAZER PARTE")
       }
     }
