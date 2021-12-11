@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
 
 plugins {
   kotlin("multiplatform")
-  id("org.jetbrains.compose") version "1.0.0-beta5"
+  id("org.jetbrains.compose") version "1.0.0"
   kotlin("plugin.serialization")
 }
 
@@ -21,20 +21,16 @@ kotlin {
         api(project(":common"))
 
         implementation(compose.web.core)
-        implementation(compose.web.widgets)
         implementation(compose.runtime)
         implementation(npm("@stripe/stripe-js", "1.18.0"))
         api(npm("imask", "6.2.2"))
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
         implementation("io.ktor:ktor-client-js:1.6.5")
         implementation("io.ktor:ktor-client-serialization:1.6.5")
-
-
       }
     }
   }
 }
-
 
 rootProject.plugins.withType(NodeJsRootPlugin::class.java) {
   rootProject.the<NodeJsRootExtension>().versions.webpackCli.version = "4.9.0"

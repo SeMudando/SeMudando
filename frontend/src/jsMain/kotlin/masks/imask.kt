@@ -19,7 +19,7 @@
 package br.com.semudando.masks
 
 import androidx.compose.runtime.NoLiveLiterals
-import org.jetbrains.compose.web.css.jsObject
+import br.com.semudando.components.jsObject
 import org.w3c.dom.Element
 
 @NoLiveLiterals

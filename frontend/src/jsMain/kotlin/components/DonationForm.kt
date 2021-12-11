@@ -65,7 +65,6 @@ import org.jetbrains.compose.web.css.fontSize
 import org.jetbrains.compose.web.css.fontStyle
 import org.jetbrains.compose.web.css.gap
 import org.jetbrains.compose.web.css.height
-import org.jetbrains.compose.web.css.jsObject
 import org.jetbrains.compose.web.css.justifyContent
 import org.jetbrains.compose.web.css.margin
 import org.jetbrains.compose.web.css.marginTop
@@ -75,7 +74,6 @@ import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.position
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.right
-import org.jetbrains.compose.web.css.selectors.plus
 import org.jetbrains.compose.web.css.top
 import org.jetbrains.compose.web.css.width
 import org.jetbrains.compose.web.dom.Button
@@ -160,13 +158,19 @@ fun DonationForm() {
     }
 
     if (clientSecret.isNotEmpty()) {
-      val options = jsObject<dynamic> {
+      val options = jsObject {
         this.clientSecret = clientSecret
       }
       elements = stripe.elements(options)
       elements.create("payment").mount("#payment-element")
     }
   }
+}
+
+fun jsObject(function: dynamic.() -> Unit): dynamic {
+  val obj = js("{}")
+  function(obj)
+  return obj
 }
 
 
