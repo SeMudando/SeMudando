@@ -9,9 +9,23 @@ plugins {
   kotlin("plugin.serialization")
 }
 
+//val environment = "prod"
+val environment = "test"
+
 kotlin {
   js(IR) {
-    browser()
+    browser {
+      webpackTask {
+        if(environment == "prod") {
+          args.plusAssign(listOf("--env.backendHost=https://semudando.com.br"))
+        } else {
+          args.plusAssign(listOf("--env.backendHost=localhost:9090"))
+        }
+        webpackConfigApplier {
+          export = false
+        }
+      }
+    }
     binaries.executable()
   }
 

@@ -16,22 +16,15 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package br.com.semudando.stripe
+//webpack.config.d/additional-config.js
+module.exports = env => {
 
-import br.com.semudando.StripeClientSecretResponse
-import br.com.semudando.environment.backendHost
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.js.Js
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.request.get
-import io.ktor.client.request.parameter
+    const definePlugin = new webpack.DefinePlugin(
+        {
+            BACKEND_HOST: env.backendHost
+        }
+    )
+    config.plugins.push(definePlugin)
 
-val httpClient = HttpClient(Js) {
-  install(JsonFeature)
-}
-
-suspend fun startDonation(amountCents: Long): String {
-  return httpClient.get<StripeClientSecretResponse>("${backendHost}/api/payment") {
-    parameter("amountCents", amountCents)
-  }.clientSecret
+    return config
 }
