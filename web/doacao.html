@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/se_mudando_css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/brands.min.css" integrity="sha512-OivR4OdSsE1onDm/i3J3Hpsm5GmOVvr9r49K3jJ0dnsxVzZgaOJ5MfxEAxCyGrzWozL9uJGKz6un3A7L+redIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/12a3901764.js" crossorigin="anonymous"></script>
+    
+	<title>Se Mudando</title>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img class="logo-se-mudando" src="imgs/logo_se_mudando_blue.png"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html" target="_self">início</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="quem_somos.html">quem somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="abrindo_portas.html">programa abrindo portas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="doacao.html" aria-current="page">faça uma doação</a>
+        </li>
+      </ul>
+      <span class="navbar-social">
+
+      	<a href="https://www.facebook.com/semudando/" target="_blank" i class="fa fa-facebook fa-lg"></a>
+        <a href="https://www.instagram.com/se.mudando/" target="_blank" i class="fa fa-instagram fa-lg"></a>
+        <a href="https://www.linkedin.com/company/projeto-se-mudando/" target="_blank" i class="fa fa-linkedin fa-lg"></a>
+        <a href="https://web.whatsapp.com/send?phone=5511996120450" target="_blank" i class="fa fa-whatsapp fa-lg"></a>
+        <a href="mailto:contato@semudando.com.br" target="_blank" i class="fa fa-envelope fa-lg"></a>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-banner-doacao">
+	<div class="box-left-doacao"></div>
+  <div class="box-right-doacao">
+    <div class="bloco-txt">
+      <div class="tit-bloco-txt">Por que doar?</div>
+      <div class="linha-bloco-txt"><div class="separador-horiz-blue"></div></div>
+      <div class="conteudo-bloco-txt">Nossa receita é inteiramente proveniente de doações. Com a sua ajuda nós mantemos o projeto em funcionamento e trabalhamos para reinserir pessoas em situação de rua na sociedade.</div>
+    </div>
+
+    <div class="bloco-txt">
+      <div class="tit-bloco-txt">Existe um valor mínimo para doação?</div>
+      <div class="linha-bloco-txt"><div class="separador-horiz-blue"></div></div>
+      <div class="conteudo-bloco-txt">As doações podem ser feitas a partir de R$ 1,00 (um real) e não tem limites. Caso você queira alterar ou cancelar o valor da sua doação nos meses seguintes isso também é possível.</div>
+    </div>
+
+    <div class="bloco-txt">
+      <div class="tit-bloco-txt">Quais formas de pagamento?</div>
+      <div class="linha-bloco-txt"><div class="separador-horiz-blue"></div></div>
+      <div class="conteudo-bloco-txt">Você pode realizar o pagamento através de cartão de crédito ou boleto. O pagamento por boleto apresenta uma taxa a mais de R$ 2,00 (dois reais).</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab links -->
+
+
+
+<div id="unica">
+  <form name ="formDoacao" class="form-unica">
+    <div class="form-modulo-1">
+
+      <div class="tab">
+        <div class="tab1"><input class="form-check-input" type="radio" name="checkbox" id="flexRadioDefault1" value="1" onclick="checar()" />&nbsp;&nbsp;DOAR UMA ÚNICA VEZ </div>
+          
+        <div class="tab1"><input class="form-check-input" type="radio" name="checkbox" id="flexRadioDefault1" value="2" onclick="checar()" />&nbsp;&nbsp;DOAR MENSALMENTE</div>
+      </div>  
+
+    <div id="form-unica-bts">
+      <button type="button" class="btn-valor">R$ 1</button>
+      <button type="button" class="btn-valor">R$ 5</button>
+      <button type="button" class="btn-valor">R$ 10</button>
+      <button type="button" class="btn-valor">R$ 25</button>
+      <button type="button" class="btn-valor">R$ 50</button>
+      <button type="button" class="btn-valor">R$ 100</button>
+    </div>
+
+    <div class="form-unica-digite-valor">
+      <div class="txt-digite">Digite outro valor se preferir (R$):</div>
+      <input type="text" class="txt-form-field" name="digite-valor">
+    </div>
+
+
+    <!-- TABS FORMAS DE PAGAMENTO -->
+
+    <div class="tab2">
+      <button class="tablinkss" type="button" onclick="openCity(event, 'London')" id="default-open"><img src="imgs/icon-cartao.png"></button>
+      <button class="tablinkss" type="button" onclick="openCity(event, 'Paris')"><img src="imgs/icon-gpay.png"></button>
+      <button class="tablinkss" type="button" onclick="openCity(event, 'Tokyo')"><img src="imgs/icon-boleto.png"></button>
+    </div>
+    </div>
+
+    <div class="tabcontents-container">
+            <div id="London" class="tabcontents">
+              <!-- area do pagamento por cartão -->
+              <div id="area-cartao">
+                <div class="field-label">Número do cartão</div>
+                  <div class="numero-cartao">   
+                  <input class="input-card-field" type="text" placeholder="123.456.789.000">
+                    <div class="row-icons">
+                      <div class="fa-brands fa-cc-visa fa-lg"></div>
+                      <div class="fa-brands fa-cc-mastercard fa-lg"></div>
+                      <div class="fa-brands fa-cc-amex fa-lg"></div>
+                      <div class="fa-brands fa-cc-jcb fa-lg"></div>
+                    </div>
+                </div>
+              </div>
+
+
+              <div id="area-dados-cartao">
+                <div class="dados-cartao-container">
+
+                <div class="validade-cartao">  
+                  <div class="field-label">Validade</div>
+                    <div class="field-content">
+                      <input class="input-card-field-small" type="text" placeholder="MM/AA">
+                      <img src="imgs/validade-cartao.png">
+                    </div>
+                </div>
+
+                <div class="cvc-cartao">  
+                  <div class="field-label">CVC</div>
+                    <div class="field-content">
+                      <input class="input-card-field-small" type="text" placeholder="***">
+                      <img src="imgs/cvc-cartao.png">
+                      <img src="imgs/question-icon.png" class="question-icon">
+                    </div>
+                </div>
+
+              </div>
+
+             <div class="pais-dropbox">
+        <div class="field-label">País</div>
+        <select id="countries" name="pais">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="fiat" selected>Fiat</option>
+            <option value="audi">Audi</option>
+        </select>
+        </div>
+
+        <a href="#" class="btn btn-primary btn-doar">DOAR</a>
+      </div>
+       </div>
+
+    <div id="Paris" class="tabcontents">
+      <div class="gpay">
+        Google Pay selecionado para checkout.
+        <img src="imgs/door-icon.png">
+        <div class="gpay-txt">Outra etapa aparecerá após o envio do pedido para finalizar os detalhes da compra.</div>
+      </div>
+    </div>
+
+    <div id="Tokyo" class="tabcontents">
+      <!-- area do pagamento por cartão -->
+              <div id="area-cartao">
+
+                <div class="form-field-block">
+                  <div class="field-label">CPF/CNPJ</div>
+                  <div class="numero-cartao">   
+                    <input class="input-card-field" type="text" placeholder="123.456.789.000">
+                  </div>
+                </div>
+
+                 <div class="form-field-block">
+                  <div class="field-label">E-mail</div>
+                  <div class="numero-cartao">   
+                    <input class="input-card-field" type="text" placeholder="exemplo@exemplo.com.br">
+                  </div>
+                 </div>
+
+                 <div class="form-field-block">
+                     <div class="field-label">Nome completo</div>
+                      <div class="numero-cartao">   
+                      <input class="input-card-field" type="text" placeholder="Nome e sobrenome">
+                     </div>
+                 </div>
+
+
+                 <div class="form-field-block">
+                <div class="pais-dropbox">
+                <div class="field-label">País ou região</div>
+                <select id="countries" name="pais">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="fiat" selected>Fiat</option>
+                    <option value="audi">Audi</option>
+                </select>
+                </div></div>
+
+                <div class="form-field-block">
+                 <div class="field-label">Endereço</div>
+                    <div class="numero-cartao">   
+                    <input class="input-card-field" type="text" placeholder="Rua, número, complemento, bairro, e estado">
+                      </div></div>
+
+                    <a href="#" class="btn btn-primary btn-doar">DOAR</a>
+              </div>    
+            </div>
+  </form>
+</div>
+
+  <!--   -------------------------------------------------------- -->
+
+
+
+<footer>
+  <a class="footer-brand" href="index.html" target="_self"><img class="logo-se-mudando-footer" src="imgs/logo_se_mudando_blue.png"></a>
+  <div class="footer-middle-box">Site desenvolvido por<a href="https://somos-oclab.com.br" target="_blank"><img src="imgs/loguinhooclab.png"></a>laboratório criativo @ 2022</div>
+  <div class="footer-right-box">
+    <div class="footer-right-txt">Gerando oportunidade para mudança.</div>
+    <div class="footer-inferior-right-box">
+    <div class="fale-txt">Fale com a gente!</div>
+    <span class="footer-social">
+        <a href="https://www.facebook.com/semudando/" target="_blank" i class="fa fa-facebook fa-lg"></a>
+        <a href="https://www.instagram.com/se.mudando/" target="_blank" i class="fa fa-instagram fa-lg"></a>
+        <a href="https://www.linkedin.com/company/projeto-se-mudando/" target="_blank" i class="fa fa-linkedin fa-lg"></a>
+        <a href="https://web.whatsapp.com/send?phone=5511996120450" target="_blank" i class="fa fa-whatsapp fa-lg"></a>
+        <a href="mailto:contato@semudando.com.br" target="_blank" i class="fa fa-envelope fa-lg"></a>
+    </span>
+  </div>
+</div>
+</footer>
+
+
+
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <script type="text/javascript" src="functions.js"></script>
+  
+
+	
+</body>
+</html>

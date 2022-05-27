@@ -1,6 +1,3 @@
-# Running
-`./gradlew buildInstall`
+# Se Mudando
 
-`docker-compose build`
-
-`docker-compose up -d`
+TODO
