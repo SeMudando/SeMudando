@@ -2,13 +2,9 @@ version: "3.8"
 
 services:
   web:
-    image: danjellz/http-server
-    expose:
-      - 8080
-    volumes:
-      - ./web:/public
+    image: semudando/web:1.0.0
     labels:
-      caddy: beta.semudando.com.br
+      caddy: semudando.com.br
       caddy.reverse_proxy: "{{upstreams 8080}}"
     networks:
       - caddy
